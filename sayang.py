@@ -1,4 +1,5 @@
 import tkinter as tk
+import streamlit as st
 from tkinter import messagebox, simpledialog
 from PIL import Image, ImageTk
 import pygame
