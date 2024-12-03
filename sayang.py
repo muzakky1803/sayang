@@ -1,75 +1,82 @@
-import streamlit as st
-from PIL import Image
+import tkinter as tk
+from tkinter import messagebox, simpledialog
+from PIL import Image, ImageTk
+import pygame
 
-# Konfigurasi halaman
-st.set_page_config(
-    page_title="Selamat Ulang Tahun!",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
+def animate(canvas, text, dx):
+    canvas.move(text, dx, 0)
+    if canvas.coords(text)[0] > canvas.winfo_width():
+        canvas.coords(text, -100, canvas.coords(text)[1])
+    canvas.after(50, animate, canvas, text, dx)
 
-# Header
-st.markdown("<h1 style='text-align: center; color: darkblue;'>🎉 Selamat Ulang Tahun! 🎂</h1>", unsafe_allow_html=True)
-
-# Fungsi
 def play_birthday_music():
-    """Memutar musik ulang tahun."""
     try:
-        st.audio("Happy Birthday.mp3")
-    except FileNotFoundError:
-        st.error("Musik tidak ditemukan.")
+        pygame.mixer.init()
+        pygame.mixer.music.load("Happy Birthday.mp3")
+        pygame.mixer.music.play()
+    except pygame.error as e:
+        messagebox.showerror("Error", f"Gagal memutar musik: {e}")
 
 def show_special_message():
-    """Menampilkan pesan spesial."""
-    st.success("🎉 Selamat Ulang Tahun! Semoga penuh kebahagiaan dan kesuksesan! 💖")
+    messagebox.showinfo("Ucapan Ulang Tahun", "Selamat Ulang Tahun! 🎉\nSemoga penuh kebahagiaan dan kesuksesan! 💖")
 
 def choose_theme_message():
-    """Memilih tema ucapan."""
-    themes = {
-        "Klasik": "Semoga tahun ini penuh kebahagiaan!",
-        "Motivasi": "Terus kejar impianmu!",
-        "Romantis": "Semoga cinta kita bahagia selamanya!",
-    }
-    theme = st.selectbox("Pilih Tema Ucapan:", list(themes.keys()))
-    if theme:
-        st.info(themes[theme])
+    themes = {"klasik": "Semoga tahun ini penuh kebahagiaan!", "motivasi": "Terus kejar impianmu!", 
+              "romantis": "Semoga cinta kita bahagia selamanya!"}
+    theme = simpledialog.askstring("Pilih Tema", "Pilih tema ucapan: Klasik, Motivasi, Romantis")
+    if theme and theme.lower() in themes:
+        messagebox.showinfo(f"Tema: {theme.capitalize()}", themes[theme.lower()])
 
-def show_birthday_images():
-    """Menampilkan gambar ulang tahun secara horizontal."""
-    st.markdown("<h3 style='text-align: center;'>🎈 Gambar Ulang Tahun 🎈</h3>", unsafe_allow_html=True)
-    col1, col2, col3 = st.columns(3)
+def show_birthday_image():
     try:
-        with col1:
-            img1 = Image.open("love.png").resize((300, 400))
-            st.image(img1, use_column_width="auto")
-        with col2:
-            img2 = Image.open("love1.png").resize((300, 400))
-            st.image(img2, use_column_width="auto")
-        with col3:
-            img3 = Image.open("love2.png").resize((300, 400))
-            st.image(img3, use_column_width="auto")
-        st.markdown("<p style='text-align: center; font-size: 20px;'><b>Selamat Ulang Tahun! 🎉</b></p>", unsafe_allow_html=True)
+        image_window = tk.Toplevel(root)
+        image_window.title("Gambar Ulang Tahun")
+        image_window.configure(bg="white")
+
+        image_frame = tk.Frame(image_window, bg="white")
+        image_frame.pack(pady=20)
+
+        images = ["love.png", "love1.png", "love2.png"]  
+        for image_path in images:
+            img = Image.open(image_path)
+            img = img.resize((300, 400), Image.Resampling.LANCZOS)  
+            img = ImageTk.PhotoImage(img)
+
+            label = tk.Label(image_frame, image=img, bg="white")
+            label.image = img  
+            label.pack(side="left", padx=20)  
+        label_text = tk.Label(image_window, text="Selamat Ulang Tahun! 🎉", font=("Arial", 24, "bold"), bg="white", fg="darkblue")
+        label_text.pack(pady=10)
+
+        image_window.geometry("1050x500")
     except FileNotFoundError:
-        st.error("Salah satu gambar tidak ditemukan.")
+        messagebox.showerror("Error", "Gambar tidak ditemukan.")
     except Exception as e:
-        st.error(f"Terjadi kesalahan: {e}")
+        messagebox.showerror("Error", f"Terjadi kesalahan: {e}")
 
-# Layout tombol
-st.markdown("---")
-col1, col2, col3, col4 = st.columns(4)
+root = tk.Tk()
+root.title("Selamat Ulang Tahun!")
+root.configure(bg="lightblue")
+root.state('zoomed')
 
-with col1:
-    if st.button("Ucapan Spesial"):
-        show_special_message()
+tk.Label(root, text="Selamat Ulang Tahun! 🎉", font=("Arial", 36, "bold"), bg="lightblue", fg="darkblue").pack(pady=20, fill="x")
+frame = tk.Frame(root, bg="lightblue"); frame.pack(expand=True)
+button_font = ("Arial", 20, "bold")
 
-with col2:
-    if st.button("Pilih Tema Ucapan"):
-        choose_theme_message()
+buttons = [
+    ("Dapatkan Ucapan Spesial", "cyan", show_special_message),
+    ("Pilih Tema Ucapan", "pink", choose_theme_message),
+    ("Lihat Gambar Ulang Tahun", "yellow", show_birthday_image),
+    ("Putar Musik Ulang Tahun", "green", play_birthday_music)
+]
 
-with col3:
-    if st.button("Lihat Gambar"):
-        show_birthday_images()
+for text, color, cmd in buttons:
+    tk.Button(frame, text=text, font=button_font, bg=color, fg="black", height=2, width=30, command=cmd).pack(pady=15)
 
-with col4:
-    if st.button("Putar Musik"):
-        play_birthday_music()
+canvas = tk.Canvas(root, height=100, bg="lightgray")
+canvas.pack(fill="x", side="bottom")
+text = canvas.create_text(-100, 50, text="🎉 Happy Birthday! Semoga hari ini spesial untukmu! 🎂", 
+                          font=("Arial", 24, "italic"), fill="purple")
+animate(canvas, text, 5)
+
+root.mainloop()
