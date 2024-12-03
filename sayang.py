@@ -13,7 +13,6 @@ def show_special_message():
             <h2 style="color: #d32f2f;">🎉 SELAMAT ULANG TAHUN SAYANGKU! 🎂</h2>
             <p style="font-size: 18px;">Hari ini adalah hari yang spesial, bukan hanya untukmu, tetapi juga untukku, karena bisa merayakan momen berharga ini bersamamu. Semoga tahun baru dalam hidupmu penuh kebahagiaan, kesuksesan, dan segala hal indah yang kamu impikan.
 Kamu adalah inspirasiku, dan aku bangga bisa menemanimu. Teruslah mengejar impianmu, karena aku tahu kamu bisa mencapai apa pun yang kamu inginkan. Semoga hari-harimu selalu cerah, seperti senyummu yang selalu menyinari hidupku.
-
 Selamat ulang tahun, cintaku. Aku akan selalu mendukungmu, karena kamu adalah bagian terpenting dalam hidupku. 💖</p>
         </div>
         <style>
@@ -215,7 +214,7 @@ st.markdown(
 st.markdown(
     """
     <div style="background-color: rgba(0, 188, 212, 0.7); padding: 20px; border-radius: 10px; text-align: center;">
-        <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive;">🎈🎉 SELAMAT DATANG DI HARI BAHAGIA! 🎂 🎈</h1>
+        <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive;">🎈🎉 SELAMAT DATANG DI PETUALANGAN BAHAGIA! 🎂 🎈</h1>
         <p style="font-size: 20px; color: #e3f2fd;">Semoga hari ini penuh kebahagiaan, cinta, dan Penuh Kejutan!</p>
     </div>
     """,
@@ -229,7 +228,7 @@ menu = st.selectbox(
     ("MULAI PERAYAAN ULANG TAHUN", "UCAPAN SELAMAT ULANG TAHUN", "TEMA UCAPAN", "MUSIK ULANG TAHUN", "GALERI FOTO ULANG TAHUN", "ANIMASI ULANG TAHUN", "PERMAINAN ULANG TAHUN", "KEJUTAN ULANG TAHUN", "PILIH HADIAH")
 )
 
-if menu == "Mulai Petuualangan Perayaan Ulang Tahun":
+if menu == "Mulai Petualangan Perayaan Ulang Tahun":
     show_balloon_animation()
     st.write("### Selamat Ulang Tahun")
     show_special_message()
