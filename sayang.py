@@ -28,39 +28,39 @@ def choose_theme_message():
         messagebox.showinfo(f"Tema: {theme.capitalize()}", themes[theme.lower()])
 
 def show_birthday_image():
+    """Menampilkan tiga gambar ulang tahun secara horizontal dengan teks di bawahnya."""
     try:
         image_window = tk.Toplevel(root)
         image_window.title("Gambar Ulang Tahun")
-        image_window.configure(bg="white")
 
-        image_frame = tk.Frame(image_window, bg="white")
+        image_frame = tk.Frame(image_window)
         image_frame.pack(pady=20)
 
         images = ["love.png", "love1.png", "love2.png"]  
         for image_path in images:
             img = Image.open(image_path)
-            img = img.resize((300, 400), Image.Resampling.LANCZOS)  
+            img = img.resize((450, 650), Image.Resampling.LANCZOS)  
             img = ImageTk.PhotoImage(img)
 
-            label = tk.Label(image_frame, image=img, bg="white")
+            label = tk.Label(image_frame, image=img)
             label.image = img  
-            label.pack(side="left", padx=20)  
-        label_text = tk.Label(image_window, text="Selamat Ulang Tahun! 🎉", font=("Arial", 24, "bold"), bg="white", fg="darkblue")
-        label_text.pack(pady=10)
+            label.pack(side="left", padx=10)  
+        label_text = tk.Label(image_window, text="Selamat Ulang Tahun! 🎉", font=("Arial", 30, "bold"), bg="lightblue", fg="darkblue")
+        label_text.pack(side="bottom", fill="x", pady=20)
 
-        image_window.geometry("1050x500")
+        image_window.geometry("950x350") 
     except FileNotFoundError:
         messagebox.showerror("Error", "Gambar tidak ditemukan.")
     except Exception as e:
         messagebox.showerror("Error", f"Terjadi kesalahan: {e}")
 
+
 root = tk.Tk()
 root.title("Selamat Ulang Tahun!")
-root.configure(bg="lightblue")
 root.state('zoomed')
 
-tk.Label(root, text="Selamat Ulang Tahun! 🎉", font=("Arial", 36, "bold"), bg="lightblue", fg="darkblue").pack(pady=20, fill="x")
-frame = tk.Frame(root, bg="lightblue"); frame.pack(expand=True)
+tk.Label(root, text="Selamat Ulang Tahun! 🎉", font=("Arial", 32, "bold"), bg="lightblue", fg="darkblue").pack(pady=20, fill="x")
+frame = tk.Frame(root); frame.pack(expand=True)
 button_font = ("Arial", 20, "bold")
 
 buttons = [
@@ -71,7 +71,7 @@ buttons = [
 ]
 
 for text, color, cmd in buttons:
-    tk.Button(frame, text=text, font=button_font, bg=color, fg="black", height=2, width=30, command=cmd).pack(pady=15)
+    tk.Button(frame, text=text, font=button_font, bg=color, height=3, command=cmd).pack(pady=10, fill="x", padx=100)
 
 canvas = tk.Canvas(root, height=100, bg="lightgray")
 canvas.pack(fill="x", side="bottom")
