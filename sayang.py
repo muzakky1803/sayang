@@ -3,18 +3,18 @@ import random
 from PIL import Image
 import time
 
-# Fungsi untuk menambahkan musik ulang tahun menggunakan HTML5 audio tag
 def play_birthday_music():
-    # Menggunakan st.audio untuk memutar musik
     st.audio("Happy Birthday.mp3", format="audio/mp3", start_time=0)
 
-# Fungsi untuk menampilkan ucapan selamat ulang tahun dengan animasi
 def show_special_message():
     st.markdown(
         """
         <div style="background-color: #f9a825; padding: 20px; border-radius: 15px; text-align: center; animation: fadeIn 2s;">
-            <h2 style="color: #d32f2f;">🎉 Selamat Ulang Tahun! 🎂</h2>
-            <p style="font-size: 18px;">Semoga penuh kebahagiaan, cinta, dan kejutan spesial! 💖</p>
+            <h2 style="color: #d32f2f;">🎉 SELAMAT ULANG TAHUN SAYANGKU! 🎂</h2>
+            <p style="font-size: 18px;">Hari ini adalah hari yang spesial, bukan hanya untukmu, tetapi juga untukku, karena bisa merayakan momen berharga ini bersamamu. Semoga tahun baru dalam hidupmu penuh kebahagiaan, kesuksesan, dan segala hal indah yang kamu impikan.
+Kamu adalah inspirasiku, dan aku bangga bisa menemanimu. Teruslah mengejar impianmu, karena aku tahu kamu bisa mencapai apa pun yang kamu inginkan. Semoga hari-harimu selalu cerah, seperti senyummu yang selalu menyinari hidupku.
+
+Selamat ulang tahun, cintaku. Aku akan selalu mendukungmu, karena kamu adalah bagian terpenting dalam hidupku. 💖</p>
         </div>
         <style>
             @keyframes fadeIn {
@@ -26,12 +26,11 @@ def show_special_message():
         unsafe_allow_html=True,
     )
 
-# Fungsi untuk memilih tema ucapan
 def choose_theme_message(theme):
     themes = {
-        "Klasik": "Semoga tahun ini penuh kebahagiaan!",
-        "Motivasi": "Terus kejar impianmu!",
-        "Romantis": "Semoga cinta kita bahagia selamanya!"
+        "Klasik": "Selamat ulang tahun Sayangku, Semoga hari-harimu dipenuhi dengan kebahagiaan yang tak terhingga. Semoga Tuhan selalu memberikan berkah, kesehatan, dan kebahagiaan dalam setiap langkahmu. Nikmati setiap momen dalam hidupmu dan teruslah bersinar 💖",
+        "Motivasi": "Selamat ulang tahun Sayangku, Setiap tahun membawa peluang baru untuk tumbuh dan meraih impian. Jangan pernah takut untuk melangkah lebih jauh dan mengejar apa yang kamu inginkan. Terus berjuang dan percaya pada dirimu, karena dunia ini penuh dengan kemungkinan. Tahun ini adalah tahunmu untuk bersinar lebih terang 💖",
+        "Romantis": "Selamat ulang tahun, cintaku! Setiap detik bersamamu adalah anugerah yang tak ternilai. Semoga hari ini seindah hatimu yang penuh dengan kasih dan kehangatan. Aku berjanji akan selalu ada untukmu, mendukungmu, dan mencintaimu dalam setiap langkah hidup kita bersama. Semoga tahun baru dalam hidupmu ini semakin indah dan penuh cinta 💖"
     }
     if theme:
         st.markdown(
@@ -49,22 +48,25 @@ def choose_theme_message(theme):
             unsafe_allow_html=True,
         )
 
-# Fungsi untuk menampilkan galeri foto ulang tahun dengan efek animasi
 def show_birthday_image():
-    st.write("## 🎊 Galeri Ulang Tahun")
-    images = ["love.png", "love1.png", "love2.png"]
-    cols = st.columns(len(images))
-    for col, img_path in zip(cols, images):
+    st.write("## 🎊 GALERI FOTO ULANG TAHUN 🎂")
+    
+    images = ["love.png", "love1.png", "love2.png", "love3.png", "love4.png", "love5.png"]
+    num_cols = 3  
+    cols = st.columns(num_cols)
+    
+    for i, img_path in enumerate(images):
+        col = cols[i % num_cols]  
         try:
             img = Image.open(img_path)
-            col.image(img, use_container_width=True)
+            col.image(img, use_container_width=True)  
         except FileNotFoundError:
             col.error(f"Gambar {img_path} tidak ditemukan.")
-    
+
     st.markdown(
         """
         <div style="text-align: center; margin-top: 20px; font-size: 18px; color: #ff5722; animation: bounceIn 2s;">
-            🎉 Selamat Ulang Tahun! 🎂
+            🎉 Selamat Ulang Tahun Sayangku 🎂
         </div>
         <style>
             @keyframes bounceIn {{
@@ -77,33 +79,33 @@ def show_birthday_image():
         unsafe_allow_html=True,
     )
 
-# Fungsi untuk animasi teks yang muncul secara acak
 def animate_text():
-    messages = ["🎉 Happy Birthday!", "Semoga hari ini spesial untukmu! 🎂", "Selamat Ulang Tahun! 🎈"]
+    messages = ["🎉 Happy Birthday Sayangku ", "Semoga hari ini spesial untukmu! 🎂", "Selamat Ulang Tahun Sayangku 🎈"]
     message = random.choice(messages)
     st.write(f"### <span style='color: #e91e63;'>{message}</span>", unsafe_allow_html=True)
-    time.sleep(2)  # Menunggu beberapa detik sebelum animasi berikutnya
+    time.sleep(2)  
 
-# Fungsi untuk permainan ulang tahun (Tebak Angka)
 def birthday_game():
-    st.write("## 🎉 Permainan Ulang Tahun")
-    st.write("Tebak angka antara 1 sampai 10!")
+    st.write("## 🎉 PERMAINAN TEBAK ANGKA")
+    st.write("Tebak angka antara 1 sampai 18!")
     
-    correct_number = random.randint(1, 10)
-    user_guess = st.number_input("Masukkan tebakan Anda:", min_value=1, max_value=18, step=1)
+    correct_number = random.randint(1, 18)
+    user_guess = st.number_input("Masukkan tebakan ayang:", min_value=1, max_value=18, step=1)
 
     if user_guess:
         if user_guess == correct_number:
-            st.success(f"🎉 Selamat! Anda berhasil menebak angka {correct_number} dengan benar!")
+            st.success(f"🎉 Selamat! Ayang berhasil menebak angka {correct_number} dengan benar!")
         else:
             st.error(f"Ups! Angka yang benar adalah {correct_number}. Coba lagi!")
 
-# Fungsi untuk kejutan spesial
+
 def surprise():
     surprises = [
-        "🎉 Surprise! Anda mendapatkan hadiah spesial: Paket liburan!",
-        "🎁 Surprise! Anda mendapatkan voucher belanja senilai $100!",
-        "🎊 Surprise! Anda mendapatkan tiket konser idola Anda!"
+        "🎉 Surprise! ayang mendapatkan hadiah spesial: Paket Jalan-Jalan!",
+        "🎁 Surprise! ayang mendapatkan voucher Jajan senilai 50!",
+        "🎊 Surprise! ayang mendapatkan voucher kulineran kemana saja!",
+        "🎊 Surprise! ayang mendapatkan voucher Sesi Belanja!",
+        "🎁 Surprise! ayang mendapatkan voucher Nonton!",
     ]
     st.markdown(
         f"""
@@ -120,14 +122,12 @@ def surprise():
         unsafe_allow_html=True,
     )
 
-# Fungsi untuk memilih hadiah ulang tahun
 def choose_gift():
-    gifts = ["Smartphone", "Laptop", "Voucher Belanja", "Paket Liburan"]
-    gift = st.selectbox("Pilih Hadiah Ulang Tahun:", gifts)
+    gifts = ["Paket Gacoan", "Es krim", "Kulineri", "Paket Jalan-Jalan", "Isi yang ayang pengeni"]
+    gift = st.selectbox("PILIH HADIAH Ulang Tahun:", gifts)
     if st.button("Tebak Hadiah 🎁"):
-        st.write(f"🎉 Anda memilih hadiah: {gift}. Semoga beruntung!")
+        st.write(f"🎉 ayang memilih hadiah: {gift}. Semoga beruntung!")
 
-# Fungsi untuk menampilkan animasi balon
 def show_balloon_animation():
     st.markdown(
         """
@@ -174,7 +174,19 @@ def show_balloon_animation():
             animation-duration: 5s;
             animation-delay: 4s;
         }
+         .balloon:nth-child(6) {
+            left: 90%;
+            animation-duration: 5s;
+            animation-delay: 4s;
+        }
+         .balloon:nth-child(7) {
+            left: 90%;
+            animation-duration: 5s;
+            animation-delay: 4s;
+        }
         </style>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
         <div class="balloon">🎈</div>
         <div class="balloon">🎈</div>
         <div class="balloon">🎈</div>
@@ -184,10 +196,8 @@ def show_balloon_animation():
         unsafe_allow_html=True,
     )
 
-# Streamlit App
-st.set_page_config(page_title="Selamat Ulang Tahun", layout="wide")
+st.set_page_config(page_title="Selamat Ulang Tahun Sayangku", layout="wide")
 
-# Mengatur Background dan Header
 st.markdown(
     """
     <style>
@@ -202,76 +212,91 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Header dengan styling
 st.markdown(
     """
     <div style="background-color: rgba(0, 188, 212, 0.7); padding: 20px; border-radius: 10px; text-align: center;">
-        <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive;">🎈 Selamat Ulang Tahun! 🎈</h1>
-        <p style="font-size: 20px; color: #e3f2fd;">Semoga hari ini penuh kebahagiaan, cinta, dan kejutan spesial!</p>
+        <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive;">🎈🎉 SELAMAT DATANG DI HARI BAHAGIA! 🎂 🎈</h1>
+        <p style="font-size: 20px; color: #e3f2fd;">Semoga hari ini penuh kebahagiaan, cinta, dan Penuh Kejutan!</p>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-# Memutar musik saat pertama kali membuka halaman
 play_birthday_music()
 
-# Pilihan menu menggunakan selectbox
 menu = st.selectbox(
-    "Pilih langkah untuk merayakan ulang tahun:",
-    ("Mulai Perayaan Ulang Tahun", "Ucapan Selamat Ulang Tahun", "Tema Ucapan", "Musik Ulang Tahun", "Galeri Ulang Tahun", "Animasi Ulang Tahun", "Permainan Ulang Tahun", "Kejutan Spesial", "Pilih Hadiah")
+    "Pilih setiap langkah untuk merayakan ulang tahun:",
+    ("MULAI PERAYAAN ULANG TAHUN", "UCAPAN SELAMAT ULANG TAHUN", "TEMA UCAPAN", "MUSIK ULANG TAHUN", "GALERI FOTO ULANG TAHUN", "ANIMASI ULANG TAHUN", "PERMAINAN ULANG TAHUN", "KEJUTAN ULANG TAHUN", "PILIH HADIAH")
 )
 
-# Menampilkan bagian yang dipilih oleh pengguna
-if menu == "Mulai Perayaan Ulang Tahun":
+if menu == "Mulai Petuualangan Perayaan Ulang Tahun":
     show_balloon_animation()
-    st.write("### Ucapan Selamat Ulang Tahun")
+    st.write("### Selamat Ulang Tahun")
     show_special_message()
 
-elif menu == "Ucapan Selamat Ulang Tahun":
+elif menu == "UCAPAN SELAMAT ULANG TAHUN":
     show_balloon_animation()
-    st.write("### Langkah 1: Ucapan Selamat Ulang Tahun")
+    st.write("### Langkah 1: UCAPAN SELAMAT ULANG TAHUN")
     show_special_message()
 
-elif menu == "Tema Ucapan":
+elif menu == "TEMA UCAPAN":
     show_balloon_animation()
-    st.write("### Langkah 2: Pilih Tema Ucapan")
-    theme = st.selectbox("Pilih Tema Ucapan", ["Klasik", "Motivasi", "Romantis"])
+    st.write("### Langkah 2: PILIH TEMA UCAPAN")
+    theme = st.selectbox("PILIH TEMA UCAPAN", ["Klasik", "Motivasi", "Romantis"])
     choose_theme_message(theme)
 
-elif menu == "Musik Ulang Tahun":
+elif menu == "MUSIK ULANG TAHUN":
     show_balloon_animation()
-    st.write("### Langkah 3: Musik Ulang Tahun")
+    st.write("### Langkah 3: MUSIK ULANG TAHUN")
     play_birthday_music()
 
-elif menu == "Galeri Ulang Tahun":
+elif menu == "GALERI FOTO ULANG TAHUN":
     show_balloon_animation()
-    st.write("### Langkah 4: Galeri Foto Ulang Tahun")
+    st.write("### Langkah 4: GALERI FOTO ULANG TAHUN")
     show_birthday_image()
 
-elif menu == "Animasi Ulang Tahun":
+elif menu == "ANIMASI ULANG TAHUN":
     show_balloon_animation()
-    st.write("### Langkah 5: Animasi Ulang Tahun")
+    st.write("### Langkah 5: ANIMASI ULANG TAHUN")
     animate_text()
+    
+    
+    time.sleep(2) 
+    st.markdown(
+        """
+        <div style="background-color: #ffeb3b; padding: 20px; border-radius: 15px; text-align: center; animation: surpriseEffect 3s;">
+            <h2 style="color: #e91e63;">🎉 KEJUTAN SPESIAL UNTUKMU! 🎁</h2>
+            <p style="font-size: 18px; color: #388e3c;">Tunggu kejutan berikutnya! Kamu sangat berharga dan aku akan selalu membuat hari-harimu penuh kebahagiaan! 💖</p>
+        </div>
+        <style>
+            @keyframes surpriseEffect {
+                0% { transform: scale(0.5); opacity: 0; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-elif menu == "Permainan Ulang Tahun":
+
+elif menu == "PERMAINAN ULANG TAHUN":
     show_balloon_animation()
     birthday_game()
 
-elif menu == "Kejutan Spesial":
+elif menu == "KEJUTAN ULANG TAHUN":
     show_balloon_animation()
     surprise()
 
-elif menu == "Pilih Hadiah":
+elif menu == "PILIH HADIAH":
     show_balloon_animation()
     choose_gift()
 
-# Footer dengan sentuhan grafis
+
 st.markdown(
     """
     <div style="text-align: center; font-size: 14px; margin-top: 20px;">
         <hr style="border: 1px solid #f50057;">
-        Dibuat dengan ❤️ untuk merayakan momen spesial Anda!
+        Dibuat dengan sepenuh ❤️ untuk merayakan momen spesial ayang!
     </div>
     """,
     unsafe_allow_html=True,
