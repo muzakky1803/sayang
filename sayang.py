@@ -122,7 +122,7 @@ def surprise():
     )
 
 def choose_gift():
-    gifts = ["Paket Gacoan", "Es krim", "Kulineri", "Paket Jalan-Jalan", "Isi yang ayang pengeni"]
+    gifts = ["Paket Gacoan", "Es krim", "Kulineri", "Paket Jalan-Jalan", "Wist yang ayang pengeni"]
     gift = st.selectbox("PILIH HADIAH Ulang Tahun:", gifts)
     if st.button("Tebak Hadiah 🎁"):
         st.write(f"🎉 ayang memilih hadiah: {gift}. Semoga beruntung!")
@@ -214,18 +214,23 @@ st.markdown(
 st.markdown(
     """
     <div style="background-color: rgba(0, 188, 212, 0.7); padding: 20px; border-radius: 10px; text-align: center;">
-        <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive;">🎈🎉 SELAMAT DATANG DI PETUALANGAN BAHAGIA! 🎂 🎈</h1>
-        <p style="font-size: 20px; color: #e3f2fd;">Semoga hari ini penuh kebahagiaan, cinta, dan Penuh Kejutan!</p>
+        <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive; font-size: 40px;">🎈🎉SELAMAT DATANG DIPETUALANGAN BAHAGIA!🎂🎈</h1>
+        <p style="font-size: 25px; color: #e3f2fd;">Semoga hari ini penuh kebahagiaan, cinta, dan Penuh Kejutan ❤️</p>
+        <video width="100%" height="auto" controls style="margin-top: 10px; border-radius: 10px;">
+            <source src="video_link.mp4" type="video/mp4">
+            Browser Anda tidak mendukung pemutar video.
+        </video>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
+
 play_birthday_music()
 
 menu = st.selectbox(
     "Pilih setiap langkah untuk merayakan ulang tahun:",
-    ("MULAI PERAYAAN ULANG TAHUN", "UCAPAN SELAMAT ULANG TAHUN", "TEMA UCAPAN", "MUSIK ULANG TAHUN", "GALERI FOTO ULANG TAHUN", "ANIMASI ULANG TAHUN", "PERMAINAN ULANG TAHUN", "KEJUTAN ULANG TAHUN", "PILIH HADIAH")
+    ("MULAI PETUALANGAN ULANG TAHUN", "UCAPAN SELAMAT ULANG TAHUN", "TEMA UCAPAN", "MUSIK ULANG TAHUN", "GALERI FOTO ULANG TAHUN", "ANIMASI ULANG TAHUN", "PERMAINAN ULANG TAHUN", "KEJUTAN ULANG TAHUN", "PILIH HADIAH")
 )
 
 if menu == "Mulai Petualangan Perayaan Ulang Tahun":
