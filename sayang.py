@@ -216,15 +216,10 @@ st.markdown(
     <div style="background-color: rgba(0, 188, 212, 0.7); padding: 20px; border-radius: 10px; text-align: center;">
         <h1 style="color: #ffffff; font-family: 'Comic Sans MS', cursive; font-size: 40px;">🎈🎉SELAMAT DATANG DIPETUALANGAN BAHAGIA!🎂🎈</h1>
         <p style="font-size: 25px; color: #e3f2fd;">Semoga hari ini penuh kebahagiaan, cinta, dan Penuh Kejutan ❤️</p>
-        <video width="100%" height="auto" controls style="margin-top: 10px; border-radius: 10px;">
-            <source src="video_link.mp4" type="video/mp4">
-            Browser Anda tidak mendukung pemutar video.
-        </video>
     </div>
     """,
     unsafe_allow_html=True,
 )
-
 
 play_birthday_music()
 
